@@ -1,55 +1,108 @@
-import React from 'react';
+
 import Link from 'next/link';
-import '../../styles/main.scss'
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
 
+import auth0 from '../../services/auth0';
 
-class Header extends React.Component {
+const BsNavLink = (props) => {
 
-	render() {
-		const title = this.props.title;
-
-		return (
-			<React.Fragment>
-				<p> { title } </p>
-				{this.props.children}
-				<p className='customClass'> I am styled P element</p>
-				<p className='customClassFromFile'> I am styled P element with customClassFromFile</p>
-
-
-				<Link href='/'>
-					<a style={{'fontSize': '20px'}}> Home </a>
-				</Link>
-
-				<Link href='/about'>
-					<a> About </a>
-				</Link>
-
-				<Link href='/blogs'>
-					<a> Blogs </a>
-				</Link>
-
-				<Link href='/portfolios'>
-					<a> Portfolios </a>
-				</Link>
-
-				<Link href='/cv'>
-					<a> CV </a>
-				</Link>
-				<style jsx>
-				{
-					`
-					a {
-						font-size: 20px;
-					};
-					.customClass {
-						color: red;
-					}
-					`
-				}
-				</style>
-			</React.Fragment>
-		)
-	}
+	const { route, title } = props;
+	return (
+		<Link href={route}>
+			<a className='nav-link port-navbar-link'> {title} </a>
+	 	</Link>
+	)
 }
 
-export default Header;
+const Login = () => {
+  return (
+    <span onClick={auth0.login} className='nav-link port-navbar-link clickable'> Log in </span>
+  )
+}
+
+const Logout = () => {
+  return (
+    <span onClick={auth0.logout} className='nav-link port-navbar-link clickable'> Log out </span>
+  )
+}
+
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+    const { isAuthenticated } = this.props;
+
+    return (
+      <div>
+        <Navbar className='port-navbar port-default absolute' color="transparent" light expand="md">
+          <NavbarBrand className='port-navbar-brand' href="/">Jason He</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem className='port-navbar-item'>
+								<BsNavLink route='/' title='Home' />
+              </NavItem>
+
+              <NavItem className='port-navbar-item'>
+								<BsNavLink route='/about' title='About' />
+              </NavItem>
+
+              <NavItem className='port-navbar-item'>
+								<BsNavLink route='/portfolios' title='Portfolio' />
+              </NavItem>
+
+              <NavItem className='port-navbar-item'>
+								<BsNavLink route='/blogs' title='Blog' />
+              </NavItem>
+
+              <NavItem className='port-navbar-item'>
+								<BsNavLink route='/cv' title='CV' />
+              </NavItem>
+
+              <NavItem className='port-navbar-item'>
+                <Link href='https://github.com/Jsonghh/'>
+			            <a className='nav-link port-navbar-link'> GitHub </a>
+	 	            </Link>
+                
+              </NavItem>
+
+              { !isAuthenticated &&
+                <NavItem className='port-navbar-item'>
+								  <Login />
+                </NavItem>
+              }
+              
+              { isAuthenticated &&
+                <NavItem className='port-navbar-item'>
+								  <Logout />
+                </NavItem>
+              }
+              
+
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+}
