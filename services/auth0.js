@@ -71,7 +71,7 @@ class Auth0 {
   }
 
   async getJWKS() {
-    const res = await axios.get('https://jsong.auth0.com/.well-known/jkws.json');
+    const res = await axios.get('https://jsong.auth0.com/.well-known/jwks.json');
     const jwks = res.data;
     return jwks;
   }
