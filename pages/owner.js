@@ -10,7 +10,7 @@ class Owner extends React.Component {
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage>
-          <h1> I am CV Page</h1>
+          <h1> I am OWNER Page</h1>
         </BasePage>
       </BaseLayout>
     )
