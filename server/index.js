@@ -28,8 +28,14 @@ app.prepare()
 
 
 
-  server.get('/api/v1/secret', authService. checkJWT, (req, res) => {
+  server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
 
+    return res.json(secretData);
+  })
+
+  server.get('/api/v1/onlysiteowner', authService.checkJWT, authService.checkRole('admin'), (req, res) => {
+
+    // console.log(req.user);
     return res.json(secretData);
   })
 
@@ -37,11 +43,11 @@ app.prepare()
     return handle(req, res)
   })
 
-  // server.use(function (err, req, res, next) {
-  //   if (err.name === 'UnauthorizedError') {
-  //     res.status(401).send({title:'Unauthorized', detail: 'Unauthorized Access!'});
-  //   }
-  // });
+  server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send({title:'Unauthorized', detail: 'Unauthorized Access!'});
+    }
+  });
 
   server.use(handle).listen(3000, (err) => {
     if (err) throw err
