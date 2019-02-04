@@ -1,4 +1,5 @@
-import { Container } from 'reactstrap'
+import { Container } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 
 const BasePage = (props) => {
@@ -19,4 +20,4 @@ BasePage.defaultProps = {
   className: ''
 }
 
-export default BasePage
+export default BasePage;
