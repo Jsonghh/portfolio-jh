@@ -12,8 +12,7 @@ const validateInputs = (values) => {
 
   
   Object.entries(values).forEach(([key, value]) => {
-    console.log(key);
-    if (!value) {
+    if (!values[key]) {
       errors[key] = `Field ${key} is required`
     }
   
@@ -43,6 +42,7 @@ const PortfolioCreateForm = () => (
       initialValues={INITIAL_VALUES}
       validate={validateInputs}
       onSubmit={(values, { setSubmitting }) => {
+        console.log(values);
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
