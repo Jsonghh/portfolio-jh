@@ -14,9 +14,15 @@ const validateInputs = (values) => {
   Object.entries(values).forEach(([key, value]) => {
     if (!values[key]) {
       errors[key] = `Field ${key} is required`
-    }
-  
-  })
+    }  
+  });
+
+  const startDate = values.startDate;
+  const endDate = values.endDate;
+
+  if (startDate && endDate && endDate < startDate) {
+    errors.endDate = 'End Date annot be before start date';
+  }
 
 
   // } else if (
@@ -30,10 +36,11 @@ const validateInputs = (values) => {
 const INITIAL_VALUES = {
   title: '',
   company: '',
+  location: '',
   position: '',
   description: '',
   startDate: '',
-  endData: ''
+  endDate: ''
 };
 
 const PortfolioCreateForm = () => (
@@ -42,7 +49,6 @@ const PortfolioCreateForm = () => (
       initialValues={INITIAL_VALUES}
       validate={validateInputs}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
@@ -89,6 +95,7 @@ const PortfolioCreateForm = () => (
           <Field
             name="endDate"
             label="End Date"
+            canBeDisabled='true'
             component={PortDate} />
 
           <button type="submit" disabled={isSubmitting}>
