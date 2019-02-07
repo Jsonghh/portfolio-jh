@@ -7,7 +7,16 @@ import { Row, Col } from 'reactstrap';
 import withAuth from '../components/hoc/withAuth';
 
 
-class portfolioNew extends React.Component {
+class PortfolioNew extends React.Component {
+
+  constructor(props) {
+    super();
+    this.savePortfolio = this.savePortfolio.bind(this);
+  }
+
+  savePortfolio(portfolioData) {
+    alert(JSON.stringify(portfolioData, null, 2));
+  }
 
   render() {
     return (
@@ -15,7 +24,7 @@ class portfolioNew extends React.Component {
         <BasePage className='portfolio-creat-page' title='Creat New Portfolio'>
           <Row>
             <Col md='6'>
-              <PortfolioCreateForm />
+              <PortfolioCreateForm onSubmit={this.savePortfolio}/>
             </Col>
           </Row>
         </BasePage>
@@ -24,4 +33,6 @@ class portfolioNew extends React.Component {
   }
 }
 
-export default withAuth('siteOwner')(portfolioNew);
+export default withAuth('siteOwner')(PortfolioNew);
+
+
