@@ -12,8 +12,11 @@ const app = next({ dev })
 const handle = routes.getRequestHandler(app)
 const config = require('./config');
 
-const Book = require('./models/book');
 const bodyParser = require('body-parser');
+
+const bookRoutes = require('./routes/book');
+const portfolioRoutes = require('./routes/portfolio');
+
 
 const secretData = [
   {
@@ -35,23 +38,9 @@ app.prepare()
     const server = express();
 
     server.use(bodyParser.json());
-
-
-    server.post('/api/v1/books', (req, res) => {
-
-      const bookData = req.body;
-      console.log(bookData);
-
-      const book = new Book(bookData);
-
-      book.save((err, createdBook) => {
-        if (err) {
-          return res.status(422).send(err);
-        }
-
-        return res.json(createdBook);
-      });
-    });
+    server.use('/api/v1/books', bookRoutes);
+    server.use('/api/v1/test', bookRoutes);
+    server.use('/api/v1/portfolios', portfolioRoutes);
 
 
 
