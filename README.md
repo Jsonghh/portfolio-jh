@@ -1,5 +1,5 @@
 # Portfolio Web Application
-* Designed and implemented web app layouts with React, jQuery, and Bootstrap on both client and server side 
+* Designed and implemented web app layouts and basic function APIs such as CRUD (create, read, update, and delete) with React.js, Next.js, Bootstrap, and Node.js on both client and server side 
   * [Pages](https://github.com/Jsonghh/portfolio-jh/tree/master/pages)
 * Configured Auth0 APIs, setting up higher-order components (HOC) to check and assign user’s authorization
   * [Auth0 Configuration](https://github.com/Jsonghh/portfolio-jh/blob/master/services/auth0.js)
