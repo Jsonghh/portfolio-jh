@@ -7,6 +7,9 @@
 * Built NoSQL database(MongoDB) to store profile and portfolio data and created RESTful APIs to handle requests
   * [MongoDB Configuration](https://github.com/Jsonghh/portfolio-jh/tree/master/server)
   * [Configure routing and URL paths](https://github.com/Jsonghh/portfolio-jh/blob/master/server/index.js)
-  * [Function APIs for CRUD via Postman](https://github.com/Jsonghh/portfolio-jh/tree/master/server/routes)
+  * Function APIs for CRUD via Postman
+    * [routes](https://github.com/Jsonghh/portfolio-jh/tree/master/server/routes)
+    * [controllers](https://github.com/Jsonghh/portfolio-jh/tree/master/server/controllers)
+    
   
 * Provided semantic information and optimized the structure of web app with Open Graph for SEO
