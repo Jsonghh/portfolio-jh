@@ -34,7 +34,7 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
   .catch(err => console.error(err));
 
 app.prepare()
-  .then(() => {
+  .then(() => {false
     const server = express();
 
     server.use(bodyParser.json());
