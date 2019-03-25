@@ -1,7 +1,7 @@
 # Portfolio Web Application
 
 ### Home Page Demo
-![demo](https://github.com/Jsonghh/portfolio-jh/blob/master/demos/demo_hompage.png)
+![demo](https://github.com/Jsonghh/portfolio-jh/blob/master/demos/demo_homepage.png)
 
 ### Dynamic Pages
 Designed and implemented web app layouts and basic function APIs such as CRUD (create, read, update, and delete) with React.js, Next.js, Bootstrap, and Node.js on both client and server side 
